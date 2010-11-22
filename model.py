@@ -45,8 +45,8 @@ class Feed(db.Document):
 class Story(db.Document):
     meta = dict(
             collection="stories",
-            ordering=['date'],
-            indexes=['date', 'feed', 'visible', 'votes']
+            ordering=['-date'],
+            indexes=['-date', 'feed', 'visible', 'votes']
         )
     
     id = db.ObjectIdField('_id')
