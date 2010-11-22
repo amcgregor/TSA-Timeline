@@ -6,7 +6,20 @@
 <%def name="title()">Latest Articles</%def>\
 <%def name="cls()">nav-default</%def>\
 \
+
+<menu class="buttons footer" id="asset-footer"><!-- style="margin-top: 10px;" -->
 <h1>${title()}</h1>
+<div class="fr">
+% if page > 1:
+<li><a href="/?pp=${pp}&amp;p=${page-1}">Newer Stories</a></li>
+% endif
+% if (len(Story.objects(visible=True)) - pp * (page - 1)) > pp:
+<li><a href="/?pp=${pp}&amp;p=${page+1}">Older Stories</a></li>
+% endif
+</div>
+</menu>
+
+
 
 <dl class="tsa">
 % for story in Story.objects(visible=True)[(page-1)*pp:page*pp]:
@@ -20,14 +33,12 @@
 % endfor
 </dl>
 
-<div class="byline tr" style="margin-top: 10px;">
-    <h4 class="fl">Continue Reading</h4>
-    <menu class="inline">\
-% if page > 1:
-<li><a href="/?pp=${pp}&amp;p=${page-1}">Newer Items</a></li>\
-% endif
+<menu class="buttons footer" id="asset-footer"><!-- style="margin-top: 10px;" -->
 % if (len(Story.objects(visible=True)) - pp * (page - 1)) > pp:
-<li><a href="/?pp=${pp}&amp;p=${page+1}">Older Items</a></li>\
+<li><a href="/?pp=${pp}&amp;p=${page+1}">❮ Older Stories ❰</a></li>\
+% endif
+% if page > 1:
+<div class="fr"><li><a href="/?pp=${pp}&amp;p=${page-1}">❱ Newer Stories ❯</a></li></div>\
 % endif
 </menu>
 </div>

@@ -236,7 +236,59 @@ menu.inline, ul.inline, ol.inline { margin: 0; padding: 0; display: inline-block
 .inline li:first-child:before { content: ''; }
 
 
+.buttons { display: block !important; margin: 0; padding: 4px 5px 0; line-height: 100%; border-radius: 2em; -webkit-border-radius: 2em; -moz-border-radius: 2em; -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, .4); -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, .4); background: #8b8b8b; filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#a9a9a9', endColorstr='#7a7a7a'); background: -webkit-gradient(linear, left top, left bottom, from(#a9a9a9), to(#7a7a7a)); background: -moz-linear-gradient(top,  #a9a9a9,  #7a7a7a); border: solid 1px #7f7f7f; font-family: 'Trebuchet MS'; }
+form .buttons { margin-top: 5px; }
+form .buttons.top { margin-bottom: 10px; margin-top: 0; }
+.buttons.assetmenu { position: relative; z-index: 10000; background: #8b8b8b; filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#7a7a7a', endColorstr='#a9a9a9'); background: -webkit-gradient(linear, left top, left bottom, from(#7a7a7a), to(#a9a9a9)); background: -moz-linear-gradient(top,  #7a7a7a,  #a9a9a9); -webkit-box-shadow: 0px 0px 4px black; -moz-box-shadow: 0px 0px 4px black; border-radius: 0; -webkit-border-radius: 0; -moz-border-radius: 0; border-width: 0; }
+.buttons.footer { position: relative; margin: 5px -10px -15px; -webkit-box-shadow: 0 0 0 white; -moz-box-shadow: 0 0 0 white; border-radius: 0; -webkit-border-radius: 0; -moz-border-radius: 0; border-width: 0; }
+.buttons li { margin: 0 4px 0 0; padding: 0 0 4px; float: left; position: relative; list-style: none; }
+.buttons li.nested > a:after { content: ' ▾'; margin-right: -3px; }
+.buttons .fr > li { margin: 0 0 0 4px; }
 
+/* main level link */
+.buttons a, .buttons button, .buttons input[type=button], .buttons input[type=submit] { font-weight: bold; color: #e7e5e5; text-decoration: none; display: block; padding: 6px 20px 7px; margin: 0; border: none; line-height: 100%; border-radius: 1.6em; -webkit-border-radius: 1.6em; -moz-border-radius: 1.6em; text-shadow: 0 1px 1px rgba(0, 0, 0, .3); }
+
+/* main level link hover */
+.buttons .current a, .buttons .current button, .buttons .current input[type=button], .buttons .current input[type=submit], .buttons li:hover a, .buttons li:hover button, .buttons li:hover input[type=button], .buttons li:hover input[type=submit] { background: #d1d1d1; filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#ebebeb', endColorstr='#a1a1a1'); background: -webkit-gradient(linear, left top, left bottom, from(#ebebeb), to(#a1a1a1)); background: -moz-linear-gradient(top,  #ebebeb,  #a1a1a1); color: #444; border-top: solid 1px #f8f8f8; -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .2); -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, .2); box-shadow: 0 1px 1px rgba(0, 0, 0, .2); text-shadow: 0 1px 0 rgba(255, 255, 255, .8); padding-top: 5px; padding-bottom: 7px; }
+.buttons.assetmenu > li.nested:hover > a, .buttons > li.nested:hover > button, .buttons > li.nested:hover > input[type=button], .buttons > li.nested:hover > input[type=submit] { border-radius: 1em; -webkit-border-radius: 1em; -moz-border-radius: 1em; -moz-border-radius-bottomleft: 0; -moz-border-radius-bottomright: 0; -webkit-border-bottom-left-radius: 0; -webkit-border-bottom-right-radius: 0; border-bottom: 0px solid black !important; }
+
+/* sub levels link hover */
+.buttons menu li:hover a, .buttons li:hover li a { background: none; border: none; color: #666; -webkit-box-shadow: none; -moz-box-shadow: none; }
+.buttons menu a:hover { background: #0399d4 !important; filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#04acec', endColorstr='#0186ba'); background: -webkit-gradient(linear, left top, left bottom, from(#04acec), to(#0186ba)) !important; background: -moz-linear-gradient(top,  #04acec,  #0186ba) !important; color: #fff !important; border-radius: 0; -webkit-border-radius: 0; -moz-border-radius: 0; text-shadow: 0 1px 1px rgba(0, 0, 0, .1); }
+
+/* level 2 list */
+.buttons menu { background: #ddd; filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#cfcfcf'); background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#cfcfcf)); background: -moz-linear-gradient(top,  #fff,  #cfcfcf); display: none; margin: 0; padding: 2px; width: auto; height: auto; white-space: nowrap; position: absolute; top: 2em; left: 0; line-height: 100%; border: solid 0px #b4b4b4; -webkit-border-radius: 10px; -moz-border-radius: 10px; border-radius: 10px; -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, .3); -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, .3); box-shadow: 0 1px 3px rgba(0, 0, 0, .3); z-index: 1000; -webkit-border-top-left-radius: 0; -moz-border-radius-topleft: 0; }
+
+.buttons label { display: block; font-weight: normal; font-size: 80%; padding: 0; margin: 5px 0 0; line-height: 100%; }
+.buttons li.label label { display: block; font-weight: bold; font-size: inherit; padding: 10px; margin: 0 0 0; line-height: 100%; cursor: inherit; border-top: 2px groove white; }
+.buttons li:first-child.label label { border-top-width: 0; }
+.buttons li li a span { margin-left: 0.5ex; color: #bbb; font-weight: normal; }
+.buttons .fr menu { left: auto; right: 0; }
+
+/* dropdown */
+.buttons li:hover > menu { display: block; }
+.buttons menu li { float: none; margin: 0; padding: 0; }
+.buttons menu a { font-weight: bold; text-shadow: 0 1px 1px rgba(255, 255, 255, .9); padding: 10px; }
+
+/* level 3+ list */
+.buttons menu menu { left: 181px; top: -3px; }
+
+/* rounded corners for first and last child */
+.buttons menu li:first-child > a, .buttons.assetmenu menu li:first-child > a { -webkit-border-top-left-radius: 0; -moz-border-radius-topleft: 0; -webkit-border-top-right-radius: 9px; -moz-border-radius-topright: 9px; }
+.buttons menu li:last-child > a, .buttons.assetmenu menu li:last-child > a { -webkit-border-bottom-left-radius: 9px; -moz-border-radius-bottomleft: 9px; -webkit-border-bottom-right-radius: 9px; -moz-border-radius-bottomright: 9px; }
+
+/* clearfix */
+.buttons:after { content: "."; display: block; clear: both; visibility: hidden; line-height: 0; height: 0; }
+.buttons { display: inline-block; }
+html[xmlns] .buttons { display: block; }
+* html .buttons { height: 1%; }
+
+
+
+
+
+.indent .buttons:first-child { margin-top: 0; margin-bottom: 5px; }
+.buttons h1 { position: absolute !important; top: 3px; left: 10px; margin: 0; padding: 0; background: transparent !important; }
 
 dl.tsa, dl.tsa dt, dl.tsa dd { margin: 0; padding: 0; }
 dl.tsa dd.desc * { margin: 0; padding: 0 }
