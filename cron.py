@@ -9,6 +9,7 @@ from datetime import datetime
 from feedparser import parse
 
 from model import *
+from mongoenigne import ValidationError
 
 
 log = logging.getLogger(__name__)
@@ -46,14 +47,20 @@ def main():
                     if feed.search.value.lower() not in article.title.lower():
                         continue
                 
-                Story(
-                        feed = feed,
-                        date = tdt(article.date_parsed),
-                        # entry = article,
-                        url = article.link,
-                        title = article.title,
-                        description = article.get('description', None)
-                    ).save()
+                try:
+                    Story(
+                            feed = feed,
+                            date = tdt(article.date_parsed),
+                            # entry = article,
+                            url = article.link,
+                            title = article.title,
+                            description = article.get('description', None)
+                        ).save()
+                
+                except mongoengine.ValidationError:
+                    log.error("Article: %r", article)
+                    raise
+                
                 saved += 1
             
             log.info("%d articles matched critera.", saved)
