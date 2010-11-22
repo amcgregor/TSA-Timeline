@@ -235,3 +235,24 @@ menu.inline, ul.inline, ol.inline { margin: 0; padding: 0; display: inline-block
 .inline li:before { content: ', '; }
 .inline li:first-child:before { content: ''; }
 
+
+
+
+dl.tsa, dl.tsa dt, dl.tsa dd { margin: 0; padding: 0; }
+dl.tsa dd.desc * { margin: 0; padding: 0 }
+dl.tsa { }
+dl.tsa dt { margin-top: 10px; padding-top: 10px; border-top: 2px solid #ccc; clear: both; font-size: 18pt; font-family: 'Trebuchet MS'; font-weight: bold; line-height: 1.3em; }
+dl.tsa dt:first-child { margin-top: 0; padding-top: 0; border-top-width: 0; }
+dl.tsa dd { }
+dl.tsa dd.meta { margin: 0 0 10px; }
+dl.tsa dd.meta:before { content: '↳ '; }
+dl.tsa dd.desc {  }
+dl.tsa dd.desc p { margin-bottom: 10px; }
+dl.tsa dd.desc ul { padding-left: 3em; margin-bottom: 10px; }
+
+/* Feed-Specific CSS */
+.MsoNormal:first-child { display: block; float: left; padding-right: 10px; padding-bottom: 10px; width: 200px; font-style: italic; font-size: 9pt; }
+.MsoNormal:nth-child(2) { display: none; }
+.blogger-post-footer { display: none; }
+img[width=1] { display: none; }
+.feedflare { display: none; }
