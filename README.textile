@@ -1,0 +1,3 @@
+h1. TSA Timeline RSS Feed Aggregator
+
+This medium-sized "WebCore":http://www.web-core.org/ web application aggregates RSS feeds and searches for articles relating to the TSA, a hot topic right now.
