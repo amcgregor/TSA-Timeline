@@ -1,3 +1,12 @@
 h1. TSA Timeline RSS Feed Aggregator
 
 This medium-sized "WebCore":http://www.web-core.org/ web application aggregates RSS feeds and searches for articles relating to the TSA, a hot topic right now.
+
+To run:
+
+* Create a distribute-based virtualenv.
+* Checkout this source into the venv, say, in a folder called @src@.
+* Run the @./install.sh@ script to install dependancies.
+* Ensure MongoDB is running (without password protection) and run @./init.py@ to create the model and populate the default data.
+* Run @./cron.py@ once to get started.  Optionally set up a half-hour cron job to run this script.
+* Run @./application.py@ to start the web server on port 8080.
