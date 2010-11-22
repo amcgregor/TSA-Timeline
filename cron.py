@@ -14,6 +14,9 @@ from model import *
 log = logging.getLogger(__name__)
 
 
+def tdt(ts):
+    return datetime.fromtimestamp(mktime(ts))
+
 
 def main():
     for feed in Feed.objects(enabled=True).order_by('-updated'):
@@ -22,7 +25,7 @@ def main():
         try:
             d = parse(feed.url)
             
-            if d.feed.get('updated_parsed', None) and d.feed.get('updated_parsed', None) < feed.updated:
+            if d.feed.get('updated_parsed', None) and tdt(d.feed.get('updated_parsed', None)) < feed.updated:
                 log.warn("Feed hasn't been updated, skipping.")
                 continue
             
@@ -30,7 +33,7 @@ def main():
             feed.site = d.feed.link
             
             if feed.updated:
-                new = [article for article in d.entries if datetime.fromtimestamp(mktime(article.date_parsed)) > feed.updated]
+                new = [article for article in d.entries if tdt(article.date_parsed) > feed.updated]
             
             else:
                 new = d.entries
@@ -45,7 +48,7 @@ def main():
                 
                 Story(
                         feed = feed,
-                        date = datetime.fromtimestamp(mktime(article.date_parsed)),
+                        date = tdt(article.date_parsed),
                         # entry = article,
                         url = article.link,
                         title = article.title,
@@ -56,7 +59,7 @@ def main():
             log.info("%d articles matched critera.", saved)
             
             if d.get('updated_parsed', None):
-                feed.updated = datetime.fromtimestamp(mktime(article.date_parsed))
+                feed.updated = tdt(article.date_parsed)
             else:
                 feed.updated = datetime.utcnow().replace(microsecond=0, tzinfo=pytz.utc)
             
