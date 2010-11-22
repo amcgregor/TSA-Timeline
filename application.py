@@ -14,10 +14,13 @@ log = logging.getLogger(__name__)
 
 class RootController(web.core.Controller):
     def index(self):
-        return 'Hello world!'
-
-    def hello(self, name):
-        return "Hello, %(name)s!" % dict(name=name)
+        return './templates/list.html', dict(Feed=Feed, Story=Story)
+    
+    def about(self):
+        return './templates/about.html', dict()
+    
+    def privacy(self):
+        return './templates/privacy.html', dict()
 
 
 
