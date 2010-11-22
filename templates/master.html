@@ -37,6 +37,42 @@
                 <h1>TSA Timeline</h1>
                 <p>RSS feed aggregation for an aggravating time.</p>
                 
+                <div style="position: absolute; right: 0; top: 5px;">
+                    <script src="http://widgets.twimg.com/j/2/widget.js"></script>
+                    <script>
+                    new TWTR.Widget({
+                      version: 2,
+                      type: 'search',
+                      search: 'TSA',
+                      interval: 6000,
+                      title: '',
+                      subject: '',
+                      width: 350,
+                      height: 135,
+                      theme: {
+                        shell: {
+                          background: '#8ec1da',
+                          color: '#ffffff'
+                        },
+                        tweets: {
+                          background: '#ffffff',
+                          color: '#444444',
+                          links: '#1985b5'
+                        }
+                      },
+                      features: {
+                        scrollbar: true,
+                        loop: false,
+                        live: true,
+                        hashtags: true,
+                        timestamp: true,
+                        avatars: false,
+                        toptweets: true,
+                        behavior: 'default'
+                      }
+                    }).render().start();
+                    </script>
+                </div>
 ##              <div class="special search">
 ##                  <form method="get" action="/search"><input type="search" autocomplete="on" name="q" placeholder="Site-wide search."></form>
 ##              </div>
@@ -54,7 +90,7 @@
                                         ><li class="nav-docs"><a href="/docs">Documentation<br><label>Manual and Tutorials</label></a></li
                                         ><li class="nav-community"><a href="/community">Community<br><label>Support and Discussion</label></a></li
                                         ><li class="nav-wiki"><a href="/wiki/">Wiki<br><label>Free-for-All</label></a></li> -->
-                    <div class="seo">
+                    <div class="seo" style="right: 360px;">
                         <a href="http://www.twitter.com/GothAlice/"><img src="/img/icons/twitter_32.png"></a>
                     </div>
                 </menu>

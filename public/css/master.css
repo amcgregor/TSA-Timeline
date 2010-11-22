@@ -316,3 +316,4 @@ img[width=1] { display: none; }
 .feedflare { display: none; }
 .j>font>br { display: none; }
 .j>font>br+div { display: none; }
+.twtr-hd, .twtr-ft { display: none; }
