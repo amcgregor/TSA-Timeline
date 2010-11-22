@@ -7,7 +7,7 @@
 <%def name="cls()">nav-default</%def>\
 \
 
-<menu class="buttons footer" id="asset-footer"><!-- style="margin-top: 10px;" -->
+<menu class="buttons header" id="asset-header">
 <h1>${title()}</h1>
 <div class="fr">
 % if page > 1:
@@ -20,18 +20,37 @@
 </menu>
 
 
-
-<dl class="tsa">
 % for story in Story.objects(visible=True)[(page-1)*pp:page*pp]:
-    <dt><a href="${story.url}">${story.title}</a></dt>
+<h1 class="primary"><a href="${story.url}">${story.title}</a></h1>
 %   if story.feed:
-    <dd class="meta">
-        From <a href="${story.feed.site}" title="">${story.feed.title}</a>
-        ${render(story.date, prefix="on ")}.</dd>
+<div class="byline tl" style="margin-bottom: 5px;">
+    <h4 class="fl">Details</h4>
+    
+    <menu class="inline">
+        <li><a href="${story.feed.site}">${story.feed.title}</a></li>
+        <li><a href="${story.url}">Original Article</a></li>
+    </menu>
+    
+    <strong class="fr">${render(story.date, prefix="on ")}</strong>
+</div>
 %   endif
-    <dd class="desc">${story.description|n}</dd>
+<div class="body">
+${story.description|n}
+</div>
 % endfor
-</dl>
+
+
+##<dl class="tsa">
+##% for story in Story.objects(visible=True)[(page-1)*pp:page*pp]:
+##    <dt><a href="${story.url}">${story.title}</a></dt>
+##%   if story.feed:
+##    <dd class="meta">
+##        From <a href="${story.feed.site}" title="">${story.feed.title}</a>
+##        ${render(story.date, prefix="on ")}.</dd>
+##%   endif
+##    <dd class="desc">${story.description|n}</dd>
+##% endfor
+##</dl>
 
 <menu class="buttons footer" id="asset-footer"><!-- style="margin-top: 10px;" -->
 % if (len(Story.objects(visible=True)) - pp * (page - 1)) > pp:
