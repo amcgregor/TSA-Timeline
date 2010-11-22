@@ -43,7 +43,7 @@ if __name__ == '__main__':
     app = web.core.Application.factory(root=RootController, debug=False, **{
             "web.sessions": False,
             "web.cache": False,
-            "web.static": True,
+            "web.static": True if len(sys.argv) < 2 else False, # production check
             "web.compress": True if len(sys.argv) < 2 else False, # production check
             "web.templating.engine": "mako",
         })
