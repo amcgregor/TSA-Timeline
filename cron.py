@@ -9,7 +9,7 @@ from datetime import datetime
 from feedparser import parse
 
 from model import *
-from mongoenigne import ValidationError
+from mongoengine import ValidationError
 
 
 log = logging.getLogger(__name__)
