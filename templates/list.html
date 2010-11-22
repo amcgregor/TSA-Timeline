@@ -8,7 +8,8 @@
 <h1>${title()}</h1>
 
 <dl class="tsa">
-% for story in Story.objects(visible=True)[:5]:
+<%! count = len(Story.objects(visible=True)) %>
+% for story in Story.objects(visible=True)[:pp]:
     <dt><a href="${story.url}">${story.title}</a></dt>
 %   if story.feed:
     <dd class="meta">
@@ -18,3 +19,11 @@
     <dd class="desc">${story.description|n}</dd>
 % endfor
 </dl>
+
+<div class="byline tl" style="margin-bottom: 5px;">
+    <h4 class="fl">Continue Reading</h4>
+    <menu class="inline">
+        <li><a href="/" title="A list of WebCore features big to small, including several features unique to WebCore.">Features</a></li>
+        <li><a href="/features" title="A list of WebCore features big to small, including several features unique to WebCore.">Features</a></li>
+    </menu>
+</div>

@@ -25,7 +25,7 @@ def main():
         try:
             d = parse(feed.url)
             
-            if d.feed.get('updated_parsed', None) and tdt(d.feed.get('updated_parsed', None)) < feed.updated:
+            if feed.updated and d.feed.get('updated_parsed', None) and tdt(d.feed.get('updated_parsed', None)) < feed.updated:
                 log.warn("Feed hasn't been updated, skipping.")
                 continue
             
