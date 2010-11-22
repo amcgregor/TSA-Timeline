@@ -8,7 +8,7 @@
 <h1>${title()}</h1>
 
 <dl class="tsa">
-<%! count = len(Story.objects(visible=True)) %>
+<%! count = len(context.get('Story').objects(visible=True)) %>
 % for story in Story.objects(visible=True)[:pp]:
     <dt><a href="${story.url}">${story.title}</a></dt>
 %   if story.feed:
