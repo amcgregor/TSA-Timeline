@@ -251,8 +251,8 @@ dl.tsa dd.desc p { margin-bottom: 10px; }
 dl.tsa dd.desc ul { padding-left: 3em; margin-bottom: 10px; }
 
 /* Feed-Specific CSS */
-.MsoNormal:first-child { display: block; float: left; padding-right: 10px; padding-bottom: 10px; width: 200px; font-style: italic; font-size: 9pt; }
-.MsoNormal:nth-child(2) { display: none; }
+/*.MsoNormal:first-child { display: block; float: left; padding-right: 10px; padding-bottom: 10px; width: 200px; font-style: italic; font-size: 9pt; }
+.MsoNormal:nth-child(2) { display: none; }*/
 .blogger-post-footer { display: none; }
 img[width=1] { display: none; }
 .feedflare { display: none; }

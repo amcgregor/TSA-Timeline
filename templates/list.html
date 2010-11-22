@@ -1,6 +1,7 @@
 ## encoding: utf-8
 <%inherit file="./templates/master.html"/>\
 <%namespace file="./templates/common.html" import="render"/>\
+<%! from model import Story %>
 \
 <%def name="title()">Latest Articles</%def>\
 <%def name="cls()">nav-default</%def>\
@@ -8,8 +9,7 @@
 <h1>${title()}</h1>
 
 <dl class="tsa">
-<%! count = len(context.get('Story').objects(visible=True)) %>
-% for story in Story.objects(visible=True)[:pp]:
+% for story in Story.objects(visible=True)[(page-1)*pp:page*pp]:
     <dt><a href="${story.url}">${story.title}</a></dt>
 %   if story.feed:
     <dd class="meta">
@@ -20,10 +20,14 @@
 % endfor
 </dl>
 
-<div class="byline tl" style="margin-bottom: 5px;">
+<div class="byline tr" style="margin-top: 10px;">
     <h4 class="fl">Continue Reading</h4>
-    <menu class="inline">
-        <li><a href="/" title="A list of WebCore features big to small, including several features unique to WebCore.">Features</a></li>
-        <li><a href="/features" title="A list of WebCore features big to small, including several features unique to WebCore.">Features</a></li>
-    </menu>
+    <menu class="inline">\
+% if page > 1:
+<li><a href="/?pp=${pp}&amp;p=${page-1}">Newer Items</a></li>\
+% endif
+% if (len(Story.objects(visible=True)) - pp * (page - 1)) > pp:
+<li><a href="/?pp=${pp}&amp;p=${page+1}">Older Items</a></li>\
+% endif
+</menu>
 </div>

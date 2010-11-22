@@ -13,9 +13,16 @@ log = logging.getLogger(__name__)
 
 
 class RootController(web.core.Controller):
-    def index(self):
+    def index(self, p=1, pp=5):
         """Display the 10 latest articles."""
-        return './templates/list.html', dict(Feed=Feed, Story=Story, maximum=10)
+        p = int(p)
+        pp = int(pp)
+        return './templates/list.html', dict(Feed=Feed, Story=Story, maximum=10, page=p, pp=pp)
+    
+    def archive(self, p=1, pp=5):
+        p = int(p)
+        pp = int(pp)
+        return './templates/list.html', dict(Feed=Feed, Story=Story, maximum=10, page=p, pp=pp)
     
     def feeds(self, feed=None):
         """Display a list of feeds or details about one feed."""
@@ -23,6 +30,10 @@ class RootController(web.core.Controller):
             return './templates/feed.html', dict(Feed=Feed, Story=Story, feed=feed)
         
         return './templates/feeds.html', dict(Feed=Feed, Story=Story)
+    
+    def stats(self):
+        """Display site statistics."""
+        return './templates/stats.html', dict(Feed=Feed, Story=Story)
     
     # Static views.
     
