@@ -1,8 +1,40 @@
 ## encoding: utf-8
-<%inherit file="./templates/master.html"/>
-
-<%def name="title()">Latest Articles</%def>
-<%def name="cls()">nav-default</%def>
-
+<%inherit file="./templates/master.html"/>\
+<%namespace file="./templates/common.html" import="render"/>\
+\
+<%def name="title()">Latest Articles</%def>\
+<%def name="cls()">nav-default</%def>\
+\
+<%def name="header()"><style>
+    dl.tsa, dl.tsa dt, dl.tsa dd { margin: 0; padding: 0; }
+    dl.tsa dd.desc * { margin: 0; padding: 0 }
+    dl.tsa { }
+    dl.tsa dt { margin-top: 10px; padding-top: 10px; border-top: 2px solid #ccc; clear: both; font-size: 18pt; font-family: 'Trebuchet MS'; font-weight: bold; line-height: 1.3em; }
+    dl.tsa dt:first-child { margin-top: 0; padding-top: 0; border-top-width: 0; }
+    dl.tsa dd { }
+    dl.tsa dd.meta { margin: 5px 5px 5px; }
+    dl.tsa dd.desc {  }
+    dl.tsa dd.desc p { margin-bottom: 10px; }
+    dl.tsa dd.desc ul { padding-left: 3em; margin-bottom: 10px; }
+    
+    /* Feed-Specific CSS */
+    .MsoNormal:first-child { display: block; float: right; padding-left: 10px; padding-bottom: 10px; width: 200px; font-style: italic; }
+    .MsoNormal:nth-child(2) { display: none; }
+    .blogger-post-footer { display: none; }
+    img[width=1] { display: none; }
+    .feedflare { display: none; }
+</style></%def>\
+\
 <h1>${title()}</h1>
 
+<dl class="tsa">
+% for story in Story.objects(visible=True)[:5]:
+    <dt><a href="${story.url}">${story.title}</a></dt>
+%   if story.feed:
+    <dd class="meta">
+        From <a href="${story.feed.site}" title="">${story.feed.title}</a>
+        ${render(story.date, prefix="on ")}.</dd>
+%   endif
+    <dd class="desc">${story.description|n}</dd>
+% endfor
+</dl>
