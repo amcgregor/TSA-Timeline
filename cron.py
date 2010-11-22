@@ -34,7 +34,7 @@ def main():
             feed.site = d.feed.link
             
             if feed.updated:
-                new = [article for article in d.entries if tdt(article.date_parsed) > feed.updated]
+                new = [article for article in d.entries if article.get('date_parsed', None) and tdt(article.get('date_parsed', None)) > feed.updated]
             
             else:
                 new = d.entries
@@ -44,7 +44,10 @@ def main():
             saved = 0
             for article in new:
                 if feed.search:
-                    if feed.search.value.lower() not in article.title.lower():
+                    if feed.search.value[1] == '!' and feed.search.value.lower() in getattr(article, feed.search.attribute, '').lower():
+                        continue
+                    
+                    if feed.search.value[0] != '!' and feed.search.value.lower() not in getattr(article, feed.search.attribute, '').lower():
                         continue
                 
                 try:
@@ -57,8 +60,8 @@ def main():
                             description = article.get('description', None)
                         ).save()
                 
-                except mongoengine.ValidationError:
-                    log.error("Article: %r", article)
+                except ValidationError:
+                    log.error("Validation error in article: %r", article)
                     raise
                 
                 saved += 1
