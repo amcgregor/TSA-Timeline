@@ -75,6 +75,7 @@ header#top a, header#top h2, header#top form, header#top div.special menu, heade
 #navigation menu li, #navigation menu li a,
 footer menu li, footer menu li a,
 #breadcrumb label, #breadcrumb menu, #breadcrumb li, #breadcrumb li a, menu.tabs li, menu.tabs li a { display: inline-block; }
+header#top p { margin: 0 10px 0; color: white; }
 
 
 header#top { background: #162c41 url('/img/header_bg.gif') repeat-x;  position: relative; z-index: 150; }
