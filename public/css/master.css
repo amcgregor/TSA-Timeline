@@ -314,3 +314,5 @@ dl.tsa dd.desc ul { padding-left: 3em; margin-bottom: 10px; }
 .blogger-post-footer { display: none; }
 img[width=1] { display: none; }
 .feedflare { display: none; }
+.j>font>br { display: none; }
+.j>font>div+br { display: none; }
