@@ -1,0 +1,44 @@
+## encoding: utf-8
+<%inherit file="./templates/master.html"/>
+
+<%def name="title()">Live Twitter Feed</%def>
+<%def name="cls()">nav-twitter</%def>
+
+<h1>Live Twitter Feed</h1>
+
+<div style="margin: 10px 0 -3px;">
+<script src="http://widgets.twimg.com/j/2/widget.js"></script>
+<script>
+new TWTR.Widget({
+  version: 2,
+  type: 'search',
+  search: 'TSA',
+  interval: 6000,
+  title: '',
+  subject: '',
+  width: 'auto',
+  height: 500,
+  theme: {
+    shell: {
+      background: '#8ec1da',
+      color: '#ffffff'
+    },
+    tweets: {
+      background: '#ffffff',
+      color: '#444444',
+      links: '#1985b5'
+    }
+  },
+  features: {
+    scrollbar: true,
+    loop: false,
+    live: true,
+    hashtags: true,
+    timestamp: true,
+    avatars: true,
+    toptweets: true,
+    behavior: 'default'
+  }
+}).render().start();
+</script>
+</div>
