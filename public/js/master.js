@@ -10,4 +10,7 @@ $(function(){
                     },
                 ]
         });
+    
+    // Find all absolute links and make them open in a new window.
+    $('a[href^=http]').attr('target', '_blank');
 });
