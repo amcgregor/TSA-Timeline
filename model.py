@@ -9,15 +9,20 @@ import mongoengine as db
 
 connection = db.connect('tsa')
 log = __import__('logging').getLogger(__name__)
-__all__ = ['Feed', 'Story']
+__all__ = ['FeedSearch', 'Feed', 'Story']
 
+
+
+class FeedSearch(db.EmbeddedDocument):
+    attribute = db.StringField(max_length=64)
+    value = db.StringField(max_length=64)
 
 
 class Feed(db.Document):
     meta = dict(
             collection="feeds",
             ordering=['title'],
-            indexes=['name', 'title', 'modified', 'updated']
+            indexes=['name', 'title', 'modified', '-updated']
         )
     
     id = db.ObjectIdField('_id')
@@ -28,6 +33,10 @@ class Feed(db.Document):
     url = db.URLField(verify_exists=True)
     enabled = db.BooleanField(default=False)
     
+    search = db.EmbeddedDocumentField(FeedSearch, default=None)
+    
+    feed = db.DictField(default=None)
+    
     created = db.DateTimeField(default=lambda: datetime.utcnow().replace(microsecond=0))
     modified = db.DateTimeField(default=None)
     updated = db.DateTimeField(default=None)
@@ -35,7 +44,7 @@ class Feed(db.Document):
 
 class Story(db.Document):
     meta = dict(
-            collection="story",
+            collection="stories",
             ordering=['date'],
             indexes=['date', 'feed', 'visible', 'votes']
         )
@@ -45,6 +54,8 @@ class Story(db.Document):
     date = db.DateTimeField(default=lambda: datetime.utcnow().replace(microsecond=0))
     visible = db.BooleanField(default=True)
     votes = db.ListField(db.StringField(max_length=64), default=[])
+    
+    entry = db.DictField(default=None)
     
     url = db.URLField(verify_exists=True)
     title = db.StringField(max_length=250)
