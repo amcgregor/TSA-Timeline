@@ -35,6 +35,7 @@ class RootController(web.core.Controller):
 
 
 if __name__ == '__main__':
+    import sys
     from paste import httpserver
     
     logging.basicConfig(level=logging.INFO)
@@ -47,4 +48,4 @@ if __name__ == '__main__':
             "web.templating.engine": "mako",
         })
     
-    httpserver.serve(app, host='127.0.0.1', port='8080')
+    httpserver.serve(app, host='127.0.0.1', port='8080' if len(sys.argv) < 2 else sys.argv[1])
