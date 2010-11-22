@@ -14,7 +14,17 @@ log = logging.getLogger(__name__)
 
 class RootController(web.core.Controller):
     def index(self):
-        return './templates/list.html', dict(Feed=Feed, Story=Story)
+        """Display the 10 latest articles."""
+        return './templates/list.html', dict(Feed=Feed, Story=Story, maximum=10)
+    
+    def feeds(self, feed=None):
+        """Display a list of feeds or details about one feed."""
+        if feed:
+            return './templates/feed.html', dict(Feed=Feed, Story=Story, feed=feed)
+        
+        return './templates/feeds.html', dict(Feed=Feed, Story=Story)
+    
+    # Static views.
     
     def about(self):
         return './templates/about.html', dict()
